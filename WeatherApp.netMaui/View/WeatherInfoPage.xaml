@@ -27,6 +27,7 @@
             <Frame BackgroundColor="#F0F0F0"
                CornerRadius="30"
                Padding="10"
+             
                HorizontalOptions="FillAndExpand"
                VerticalOptions="Start">
                 <Grid ColumnDefinitions="Auto, *">
@@ -95,9 +96,9 @@
                    WidthRequest="110"
                    BorderColor="Transparent"
                    BackgroundColor="#003263"
-                   CornerRadius="50">
+                   CornerRadius="55">
                 <VerticalStackLayout>
-                    <Label Text="{Binding Humidity}" 
+                    <Label Text="{Binding Humidity, StringFormat='{0}%'}" 
                            HorizontalOptions="Center" 
                            FontSize="30" 
                            FontAttributes="Bold"  
@@ -112,14 +113,14 @@
                    WidthRequest="110"
                    BorderColor="Transparent"
                    BackgroundColor="#003263"
-                   CornerRadius="50">
+                   CornerRadius="55">
                 <VerticalStackLayout>
                     <Label Text="{Binding FeelsLike}" 
                            HorizontalOptions="Center" 
                            FontSize="30" 
                            FontAttributes="Bold" 
                            TextColor="#fff" />
-                    <Label Text="FeelsLike" 
+                    <Label Text="Feels Like" 
                            TextColor="#fff"
                            HorizontalOptions="Center"/>
                 </VerticalStackLayout>
@@ -129,7 +130,7 @@
                    WidthRequest="110"
                    BorderColor="Transparent"
                    BackgroundColor="#003263"
-                   CornerRadius="50">
+                   CornerRadius="55">
                 <VerticalStackLayout>
                     <Label Text="{Binding WindSpeed}" 
                            HorizontalOptions="Center" 
