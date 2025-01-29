@@ -5,32 +5,84 @@
              xmlns:vm="clr-namespace:WeatherApp.netMaui.ViewModel"
              x:DataType="vm:WeatherInfoViewModel"
              Title="WeatherInfoPage"
-             BackgroundColor="#606cf2">
+             >
 
 
     <ContentPage.BindingContext>
         <vm:WeatherInfoViewModel />
     </ContentPage.BindingContext>
 
+
+    <!-- Background Gradient -->
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5,0.5" Radius="0.8">
+            <GradientStop Color="#AEEEE1" Offset="0.0"/>
+            <GradientStop Color="#94BBE9" Offset="1.0"/>
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
     <VerticalStackLayout>
-        <Frame Margin="20" >
-            <Grid ColumnSpacing="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid Padding="20"  Margin="0,0,0,20">
+            <!-- Search Bar with Icon -->
+            <Frame BackgroundColor="#F0F0F0"
+               CornerRadius="30"
+               Padding="10"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Start">
+                <Grid ColumnDefinitions="Auto, *">
+                    <!-- Search Icon -->
+                    <ImageButton 
+                       Source="searchicon.png"
+                       WidthRequest="24"
+                       HeightRequest="24"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"
+                       Command="{Binding FetchWeatherInformationCommand}"  />
+                    <!-- Search Search -->
+                    <Entry
+                           Grid.Column="1"
+                           Text="{Binding City}"
+                           Placeholder="Search you city"
+                           PlaceholderColor="#808080"
+                           TextColor="#000000"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center"
+                           BackgroundColor="Transparent"
+                           FontSize="16" />
+                </Grid>
+            </Frame>
+        </Grid>
 
-                <Entry Placeholder="Lat" Grid.Column="0" Text="{Binding Latitude}"/>
-                <Entry Placeholder="Lon" Grid.Column="1" Text="{Binding Longitude}"/>
-                <Button Text="search" Grid.Column="2" Command="{Binding FetchWeatherInformationCommand}" />
-            </Grid>
+        <Label HorizontalOptions="Center"
+               FontAttributes="Bold"
+               FontSize="90"
+               TextColor="#fff"
+               Text="{Binding Temperature}" />
+        <Frame WidthRequest="200"
+               Margin="0,0,0,20"
+               HeightRequest="200"
+               CornerRadius="100" 
+               HasShadow="False"
+               Padding="0"
+               BorderColor="Transparent"
+               BackgroundColor="Transparent">
+            <Image WidthRequest="200"  
+                   HeightRequest="200"
+                   Aspect="AspectFill"
+                   Source="{Binding WeatherIcon}"/>
         </Frame>
-
-        <Image WidthRequest="100"  HeightRequest="100" Source="{Binding WeatherIcon}"/>
-        <Label HorizontalOptions="Center" FontSize="70" Text="{Binding Temperature}" />
-        <Label HorizontalOptions="Center" FontSize ="25" FontAttributes="Bold" Text="{Binding WeatherDescription}" />
-        <Label HorizontalOptions="Center" FontSize ="25" FontAttributes="Bold" Text="{Binding Location}" />
+        
+        <Label HorizontalOptions="Center" 
+               FontSize ="25" 
+               FontAttributes="Bold" 
+               TextColor="White"
+               Text="{Binding WeatherDescription}" />
+        <Label HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize ="25" 
+               FontAttributes="Bold" 
+               TextColor="White"
+               Text="{Binding Location}" />
 
         <Grid Margin="20" ColumnSpacing="5">
             <Grid.ColumnDefinitions>
@@ -38,22 +90,55 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Frame Grid.Column="0">
+            <Frame Grid.Column="0"
+                   HeightRequest="110"
+                   WidthRequest="110"
+                   BorderColor="Transparent"
+                   BackgroundColor="#003263"
+                   CornerRadius="50">
                 <VerticalStackLayout>
-                    <Label Text="{Binding Humidity}" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="#606cf2"/>
-                    <Label Text="Humidity" HorizontalOptions="Center"/>
+                    <Label Text="{Binding Humidity}" 
+                           HorizontalOptions="Center" 
+                           FontSize="30" 
+                           FontAttributes="Bold"  
+                           TextColor="#fff"/>
+                    <Label Text="Humidity"
+                           TextColor="#fff"
+                           HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame Grid.Column="1">
+            <Frame Grid.Column="1"
+                   HeightRequest="110"
+                   WidthRequest="110"
+                   BorderColor="Transparent"
+                   BackgroundColor="#003263"
+                   CornerRadius="50">
                 <VerticalStackLayout>
-                    <Label Text="{Binding CloudCoverLevel}" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="#606cf2"/>
-                    <Label Text="Clouds" HorizontalOptions="Center"/>
+                    <Label Text="{Binding FeelsLike}" 
+                           HorizontalOptions="Center" 
+                           FontSize="30" 
+                           FontAttributes="Bold" 
+                           TextColor="#fff" />
+                    <Label Text="FeelsLike" 
+                           TextColor="#fff"
+                           HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame Grid.Column="2">
+            <Frame Grid.Column="2"
+                   HeightRequest="110"
+                   WidthRequest="110"
+                   BorderColor="Transparent"
+                   BackgroundColor="#003263"
+                   CornerRadius="50">
                 <VerticalStackLayout>
-                    <Label Text="{Binding IsDay}" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="#606cf2"/>
-                    <Label Text="Is Day" HorizontalOptions="Center"/>
+                    <Label Text="{Binding WindSpeed}" 
+                           HorizontalOptions="Center" 
+                           FontSize="30" 
+                           FontAttributes="Bold" 
+                           TextColor="#fff"/>
+                    <Label Text="km/h" 
+                           TextColor="#fff"
+                           HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </Frame>
         </Grid>

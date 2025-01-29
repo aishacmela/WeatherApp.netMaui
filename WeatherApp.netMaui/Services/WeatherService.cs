@@ -14,12 +14,12 @@ namespace WeatherApp.netMaui.Services
             _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL);
         }
 
-        public async Task<ResponseModel> GetWeatherInformation(string latitude , string longitude)
+        public async Task<ResponseModel> GetWeatherInformation(string city)
         {
             if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
                 return null;
 
-            return await _httpClient.GetFromJsonAsync<ResponseModel>($"current?access_key={Constants.API_KEY}&query={latitude},{longitude}");
+            return await _httpClient.GetFromJsonAsync<ResponseModel>($"current?access_key={Constants.API_KEY}&query={city}");
         }
     }
 }

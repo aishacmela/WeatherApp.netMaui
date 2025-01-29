@@ -14,11 +14,8 @@ namespace WeatherApp.netMaui.ViewModel
 			_weatherService = new WeatherService();	
 		}
 
-        [ObservableProperty]
-        private string longitude;
-
 		[ObservableProperty]
-		private string latitude;
+		private string city;
 
 		[ObservableProperty]
 		private string weatherIcon;
@@ -36,24 +33,24 @@ namespace WeatherApp.netMaui.ViewModel
 		private int humidity;
 
 		[ObservableProperty]
-		private string cloudCoverLevel;
+		private string feelsLike;
 
 		[ObservableProperty]
-		private string isDay;
+		private string windSpeed;
 
 		[RelayCommand]
 		private async Task FetchWeatherInformation()
 		{
-			var responseModel = await _weatherService.GetWeatherInformation(latitude, longitude);
+			var responseModel = await _weatherService.GetWeatherInformation(city);
 			if (responseModel != null)
 			{
 				WeatherIcon = responseModel.current.weather_icons[0];
-				Temperature = $"{responseModel.current.temperature}";
-				Location = $"{responseModel.location.name}, {responseModel.location.region}, {responseModel.location.country}";
+				Temperature = $"{responseModel.current.temperature}°C";
+				Location = $"{responseModel.location.name}, {responseModel.location.country}";
 				WeatherDescription = responseModel.current.weather_descriptions[0];
 				Humidity = responseModel.current.humidity;
-				CloudCoverLevel = $"{responseModel.current.cloudcover}";
-				IsDay = responseModel.current.is_day;
+				FeelsLike = $"{responseModel.current.feelslike}";
+				WindSpeed = $"{responseModel.current.wind_speed}";
 			}
 			else
 			{
