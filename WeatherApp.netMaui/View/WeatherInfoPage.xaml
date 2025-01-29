@@ -7,13 +7,13 @@
              Title="WeatherInfoPage"
              >
 
-
+    <!-- Setting the Binding Context to WeatherInfoViewModel -->
     <ContentPage.BindingContext>
         <vm:WeatherInfoViewModel />
     </ContentPage.BindingContext>
 
 
-    <!-- Background Gradient -->
+    <!-- Background Gradient for the Page -->
     <ContentPage.Background>
         <RadialGradientBrush Center="0.5,0.5" Radius="0.8">
             <GradientStop Color="#AEEEE1" Offset="0.0"/>
@@ -23,7 +23,7 @@
 
     <VerticalStackLayout>
         <Grid Padding="20"  Margin="0,0,0,20">
-            <!-- Search Bar with Icon -->
+            <!-- Search Bar with Search Icon and Text Input -->
             <Frame BackgroundColor="#F0F0F0"
                CornerRadius="30"
                Padding="10"
@@ -31,7 +31,7 @@
                HorizontalOptions="FillAndExpand"
                VerticalOptions="Start">
                 <Grid ColumnDefinitions="Auto, *">
-                    <!-- Search Icon -->
+                    <!-- Search Button Icon -->
                     <ImageButton 
                        Source="searchicon.png"
                        WidthRequest="24"
@@ -39,7 +39,7 @@
                        VerticalOptions="Center"
                        Margin="0,0,10,0"
                        Command="{Binding FetchWeatherInformationCommand}"  />
-                    <!-- Search Search -->
+                    <!-- Input Field for Searching Weather  -->
                     <Entry
                            Grid.Column="1"
                            Text="{Binding City}"
@@ -53,12 +53,13 @@
                 </Grid>
             </Frame>
         </Grid>
-
+        <!-- Display Temperature -->
         <Label HorizontalOptions="Center"
                FontAttributes="Bold"
                FontSize="90"
                TextColor="#fff"
                Text="{Binding Temperature}" />
+        <!-- Weather Icon -->
         <Frame WidthRequest="200"
                Margin="0,0,0,20"
                HeightRequest="200"
@@ -72,12 +73,14 @@
                    Aspect="AspectFill"
                    Source="{Binding WeatherIcon}"/>
         </Frame>
-        
+        <!-- Weather Description -->
         <Label HorizontalOptions="Center" 
                FontSize ="25" 
                FontAttributes="Bold" 
                TextColor="White"
                Text="{Binding WeatherDescription}" />
+        
+        <!-- Location of Weather Data -->
         <Label HorizontalOptions="Center"
                VerticalOptions="Center"
                FontSize ="25" 
@@ -85,6 +88,7 @@
                TextColor="White"
                Text="{Binding Location}" />
 
+        <!-- Additional Weather Information (Humidity, Feels Like, Wind Speed) -->
         <Grid Margin="20" ColumnSpacing="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
